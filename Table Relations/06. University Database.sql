@@ -1,0 +1,27 @@
+CREATE TABLE Majors(
+MajorID INT PRIMARY KEY,
+[Name] NVARCHAR(255)
+)
+CREATE TABLE Students(
+StudentID INT PRIMARY KEY,
+StudentNumber INT,
+StudentName NVARCHAR(255),
+MajorID INT FOREIGN KEY REFERENCES Majors(MajorID)
+)
+CREATE TABLE Subjects(
+SubjectID INT PRIMARY KEY,
+SubjectName NVARCHAR(255)
+)
+CREATE TABLE Agenda(
+[StudentID] INT FOREIGN KEY REFERENCES Students(StudentID) NOT NULL,
+[SubjectID] INT FOREIGN KEY REFERENCES Subjects(SubjectID) NOT NULL
+)
+CREATE TABLE Payments(
+PaymentID  INT PRIMARY KEY,
+PaymentDate DATE,
+PaymentAmount MONEY,
+StudentID INT FOREIGN KEY REFERENCES Students(StudentID)
+)
+ALTER TABLE Agenda
+ADD CONSTRAINT PK_Agenda
+PRIMARY KEY(SubjectID,StudentID)
