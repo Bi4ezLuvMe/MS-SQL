@@ -1,0 +1,1 @@
+SELECT Username,IpAddress FROM USERS WHERE IpAddress LIKE '___.1%.%.___'  ORDER BY Username
